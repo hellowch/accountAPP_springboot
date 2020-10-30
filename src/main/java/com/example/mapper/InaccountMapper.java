@@ -1,8 +1,7 @@
 package com.example.mapper;
 
-import com.example.entity.Inaccount;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 /**
  * <p>
@@ -13,6 +12,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @since 2020-10-30
  */
 @Mapper
-public interface InaccountMapper extends BaseMapper<Inaccount> {
+@Repository
+public interface InaccountMapper {
 
 }
