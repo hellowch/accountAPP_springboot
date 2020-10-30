@@ -1,25 +1,25 @@
 spring:
     datasource:
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/account?characterEncoding=UTF-8&serverTimezone=UTC
+        #   数据源基本配置
         username: root
         password: 123456
-
-mybatis-plus:
-    mapper-locations: classpath*:/mapper/**Mapper.xml
-
-server:
-    port: 8082
-
-shiro-redis:
-    enabled: true
-    redis-manager:
-      host: 127.0.0.1:6379
-
-account:
-    jwt:
-    # 加密秘钥
-    secret: f4e2e52034348f86b67cde581c0f9eb5
-    # token有效时长，7天，单位秒
-    expire: 604800
-    header: token
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/account?characterEncoding=UTF-8&serverTimezone=UTC
+        type: com.alibaba.druid.pool.DruidDataSource
+        #   数据源其他配置
+        initialSize: 5
+        minIdle: 5
+        maxActive: 20
+        maxWait: 60000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: SELECT 1 FROM DUAL
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+        filters: stat,wall,log4j
+        maxPoolPreparedStatementPerConnectionSize: 20
+        useGlobalDataSourceStat: true
+        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
