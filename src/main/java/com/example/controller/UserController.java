@@ -45,4 +45,10 @@ public class UserController {
         //@Validated用于校验User中的@NotBlank
         return Result.succ(user);
     }
+
+    @PostMapping("/save11")
+    public String save1() {
+        //@Validated用于校验User中的@NotBlank
+        return "okkk";
+    }
 }

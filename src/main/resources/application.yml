@@ -4,18 +4,22 @@ spring:
         url: jdbc:mysql://localhost:3306/account?characterEncoding=UTF-8&serverTimezone=UTC
         username: root
         password: 123456
+
 mybatis-plus:
     mapper-locations: classpath*:/mapper/**Mapper.xml
+
 server:
-    port: 8081
+    port: 8082
+
 shiro-redis:
     enabled: true
     redis-manager:
-        host: 127.0.0.1:6379
-myblog:
+      host: 127.0.0.1:6379
+
+account:
     jwt:
-    # \u52A0\u5BC6\u79D8\u94A5
+    # 加密秘钥
     secret: f4e2e52034348f86b67cde581c0f9eb5
-    # token\u6709\u6548\u65F6\u957F\uFF0C7\u5929\uFF0C\u5355\u4F4D\u79D2
+    # token有效时长，7天，单位秒
     expire: 604800
     header: token

@@ -18,29 +18,28 @@ import javax.servlet.http.HttpServletResponse;
 
 @RestController
 public class AccountController {
+
     @Autowired
     JwtUtils jwtUtils;
     @Autowired
     UserService userService;
 
     /**
-     * 默认账号密码：wch / 111111
+     * 默认账号密码：wch / 123456
      */
-    @CrossOrigin
+//    @CrossOrigin
     @PostMapping("/login")
     public Result login(@Validated @RequestBody LoginDto loginDto, HttpServletResponse response) {
         User user = userService.getOne(new QueryWrapper<User>().eq("username", loginDto.getUsername()));
         Assert.notNull(user, "用户不存在");
-//        if(!user.getPassword().equals(SecureUtil.md5(loginDto.getPassword()))) {
-//            return Result.fail("密码错误！");
-//        }
+
         if(!user.getPassword().equals(loginDto.getPassword())) {
             return Result.fail("密码错误！");
         }
         String jwt = jwtUtils.generateToken(user.getId());
         response.setHeader("Authorization", jwt);
         response.setHeader("Access-Control-Expose-Headers", "Authorization");
-        // 用户可以另一个接口
+
         return Result.succ(MapUtil.builder()
                 .put("id", user.getId())
                 .put("username", user.getUsername())

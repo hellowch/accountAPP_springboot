@@ -1,6 +1,6 @@
 package com.example.util;
 
-import com.myblog.shiro.AccountProfile;
+import com.example.shiro.AccountProfile;
 import org.apache.shiro.SecurityUtils;
 
 public class ShiroUtil {

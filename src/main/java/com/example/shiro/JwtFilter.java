@@ -1,8 +1,8 @@
 package com.example.shiro;
 
+import com.example.common.lang.Result;
 import cn.hutool.json.JSONUtil;
-import com.myblog.common.lang.Result;
-import com.myblog.util.JwtUtils;
+import com.example.util.JwtUtils;
 import io.jsonwebtoken.Claims;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
