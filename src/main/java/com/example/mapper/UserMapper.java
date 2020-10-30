@@ -35,7 +35,7 @@ public interface UserMapper {
      * 注册
      * @param user
      */
-    @Insert("insert into tb_user values(#{id},#{username},#{password},#{address},#{phone})")
+    @Insert("insert into tb_user values(#{id},#{username},#{password})")
     @Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")
     void register(User user);
 
