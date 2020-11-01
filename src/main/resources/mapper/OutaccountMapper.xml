@@ -2,4 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.OutaccountMapper">
 
+    <select id="getOutaccountLike" parameterType="String" resultType="com.example.entity.Outaccount">
+        SELECT * FROM tb_outaccount WHERE mark like "%"#{value}"%";
+    </select>
+
+    <select id="outaccountAll" resultType="com.example.entity.Outaccount">
+        SELECT * FROM tb_outaccount;
+    </select>
+
+    <delete id="outaccountDelete" parameterType="java.lang.Integer">
+        DELETE FROM tb_outaccount where id = #{id}
+    </delete>
+
+    <insert id="outaccountNew" parameterType="com.example.entity.Outaccount">
+        INSERT INTO tb_outaccount (money,time,type,address,mark,user_id) values (#{money},#{time},#{type},#{address},#{mark},#{user_id});
+    </insert>
+
+    <update id="outaccountUpdate" parameterType="com.example.entity.Outaccount">
+        UPDATE tb_outaccount set money=#{money},time=#{time},type=#{type},address=#{address},mark=#{mark}  where id=#{id}
+    </update>
 </mapper>

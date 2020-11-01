@@ -1,7 +1,15 @@
 package com.example.mapper;
 
+import com.example.entity.Inaccount;
+import com.example.entity.Outaccount;
+import com.example.entity.User;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * <p>
@@ -15,4 +23,28 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface InaccountMapper {
 
+    /**
+     *模糊查询
+     */
+    List<Inaccount> getInaccountLike(@Param("value") String value);
+
+    /**
+     * 查询全部记录
+     */
+    List<Inaccount> inaccountAll();
+
+    /**
+     * 删除记录
+     */
+    void inaccountDelete(Integer id);
+
+    /**
+     * 添加记录
+     */
+    void inaccountNew(Inaccount inaccount);
+
+    /**
+     * 修改记录
+     */
+    void inaccountUpdate(Inaccount inaccount);
 }

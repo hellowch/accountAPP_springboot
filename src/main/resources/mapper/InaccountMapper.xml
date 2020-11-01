@@ -2,4 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.InaccountMapper">
 
+    <select id="getInaccountLike" parameterType="String" resultType="com.example.entity.Inaccount">
+        SELECT * FROM tb_inaccount WHERE mark like "%"#{value}"%";
+    </select>
+
+    <select id="inaccountAll" resultType="com.example.entity.Inaccount">
+        SELECT * FROM tb_inaccount;
+    </select>
+
+    <delete id="inaccountDelete" parameterType="java.lang.Integer">
+        DELETE FROM tb_inaccount where id = #{id}
+    </delete>
+
+    <insert id="inaccountNew" parameterType="com.example.entity.Inaccount">
+        INSERT INTO tb_inaccount (money,time,type,handler,mark,user_id) values (#{money},#{time},#{type},#{handler},#{mark},#{user_id});
+    </insert>
+
+    <update id="inaccountUpdate" parameterType="com.example.entity.Outaccount">
+        UPDATE tb_inaccount set money=#{money},time=#{time},type=#{type},handler=#{handler},mark=#{mark}  where id=#{id}
+    </update>
 </mapper>

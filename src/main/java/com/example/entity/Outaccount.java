@@ -19,7 +19,7 @@ public class Outaccount implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "_id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
@@ -47,6 +47,10 @@ public class Outaccount implements Serializable {
      */
     private String mark;
 
+    /**
+     * 备注
+     */
+    private Integer user_id;
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -98,5 +102,26 @@ public class Outaccount implements Serializable {
 
     public void setMark(String mark) {
         this.mark = mark;
+    }
+
+    public Integer getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
+    }
+
+    @Override
+    public String toString() {
+        return "Outaccount{" +
+                "id=" + id +
+                ", money=" + money +
+                ", time='" + time + '\'' +
+                ", type='" + type + '\'' +
+                ", address='" + address + '\'' +
+                ", mark='" + mark + '\'' +
+                ", user_id=" + user_id +
+                '}';
     }
 }
