@@ -28,15 +28,15 @@ public class InaccountService {
     /**
      *模糊查询
      */
-    public Result getInaccountLike(String value){
+    public Result getInaccountLike(Inaccount inaccount){
         Result result=new Result();
         result.setSuccess(false);
         result.setDetail(null);
         try {
-            inaccountMapper.getInaccountLike(value);
+            inaccountMapper.getInaccountLike(inaccount);
             result.setMsg("查询成功");
             result.setSuccess(true);
-            result.setDetail(inaccountMapper.getInaccountLike(value));
+            result.setDetail(inaccountMapper.getInaccountLike(inaccount));
         }catch (Exception e){
             result.setMsg(e.getMessage());
             e.printStackTrace();

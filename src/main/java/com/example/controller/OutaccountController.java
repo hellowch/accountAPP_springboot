@@ -35,8 +35,8 @@ public class OutaccountController {
      * 模糊查询
      */
     @PostMapping("/getOutaccountLike")
-    public Result getOutaccountLike(String value){
-        return outaccountService.getOutaccountLike(value);
+    public Result getOutaccountLike(Outaccount outaccount){
+        return outaccountService.getOutaccountLike(outaccount);
     }
 
     /**

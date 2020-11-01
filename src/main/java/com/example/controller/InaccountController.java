@@ -40,8 +40,9 @@ public class InaccountController {
      * 模糊查询
      */
     @PostMapping("/getInaccountLike")
-    public Result getInaccountLike(String value){
-        return inaccountService.getInaccountLike(value);
+    public Result getInaccountLike(Inaccount inaccount){
+        System.out.println(inaccount);
+        return inaccountService.getInaccountLike(inaccount);
     }
 
     /**

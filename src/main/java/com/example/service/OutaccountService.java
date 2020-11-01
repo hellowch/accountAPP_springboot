@@ -28,15 +28,15 @@ public class OutaccountService {
     /**
      *模糊查询
      */
-    public Result getOutaccountLike(String value){
+    public Result getOutaccountLike(Outaccount outaccount){
         Result result=new Result();
         result.setSuccess(false);
         result.setDetail(null);
         try {
-            outaccountMapper.getOutaccountLike(value);
+            outaccountMapper.getOutaccountLike(outaccount);
             result.setMsg("查询成功");
             result.setSuccess(true);
-            result.setDetail(outaccountMapper.getOutaccountLike(value));
+            result.setDetail(outaccountMapper.getOutaccountLike(outaccount));
         }catch (Exception e){
             result.setMsg(e.getMessage());
             e.printStackTrace();

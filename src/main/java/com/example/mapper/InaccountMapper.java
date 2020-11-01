@@ -26,7 +26,7 @@ public interface InaccountMapper {
     /**
      *模糊查询
      */
-    List<Inaccount> getInaccountLike(@Param("value") String value);
+    List<Inaccount> getInaccountLike(Inaccount inaccount);
 
     /**
      * 查询全部记录

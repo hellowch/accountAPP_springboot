@@ -24,7 +24,7 @@ public interface OutaccountMapper {
     /**
      *模糊查询
      */
-    List<Inaccount> getOutaccountLike(@Param("value") String value);
+    List<Inaccount> getOutaccountLike(Outaccount outaccount);
 
     /**
      * 查询全部记录
