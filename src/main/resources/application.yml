@@ -24,6 +24,11 @@ spring:
         useGlobalDataSourceStat: true
         connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 
+    redis:
+        host: 127.0.0.1
+        port: 6379
+
+
 mybatis:
     #配置mapper扫描路径
     mapper-locations: classpath:mapper/*.xml

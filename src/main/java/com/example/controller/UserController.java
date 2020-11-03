@@ -3,7 +3,10 @@ package com.example.controller;
 
 import com.example.entity.User;
 import com.example.service.UserService;
+import com.example.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 import com.example.entity.Result;
 
@@ -21,6 +24,9 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    private RedisUtil redisUtil;
 
     /**
      * 注册
@@ -40,6 +46,16 @@ public class UserController {
     @PostMapping("/login")
     public Result login(@RequestBody User user){
         return userService.login(user);
+    }
+
+    /**
+     * 退出
+     * @return
+     */
+    @GetMapping("/logout")
+    public String logout() {
+        redisUtil.del("username");
+        return "退出成功";
     }
 
 

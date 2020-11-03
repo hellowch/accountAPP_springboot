@@ -1,14 +1,47 @@
 package com.example;
 
-import org.apache.ibatis.session.SqlSession;
+import com.example.entity.User;
+import com.example.util.RedisUtil;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.Transaction;
 
 @SpringBootTest
 class FinalprojectSpringbootApplicationTests {
 
+    @Autowired
+    @Qualifier("redisTemplate")
+    private RedisTemplate redisTemplate;
+
+    @Autowired
+    private RedisUtil redisUtil;
+
+    //        springboot集成redis测试
     @Test
-    void contextLoads() {
+    public void redisTemplate() {
+        User user = new User((long) 2,"wch","123456");
+        redisTemplate.opsForValue().set("user2",user);
+        System.out.println(redisTemplate.opsForValue().get("user2"));
+    }
+
+    @Test
+    public void redisUtil(){
+        redisUtil.del("key");
+        redisUtil.sSet("key",1,2,3,4,5,6,7);
+        System.out.println(redisUtil.sGet("key"));
+        if (redisUtil.sHasKey("key",6) == true){
+            System.out.println("存在");
+        }else {
+            System.out.println("不存在");
+        }
     }
 
 

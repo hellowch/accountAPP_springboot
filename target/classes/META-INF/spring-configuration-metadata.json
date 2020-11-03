@@ -1,0 +1,28 @@
+{
+  "groups": [
+    {
+      "name": "account.jwt",
+      "type": "com.example.util.JwtUtils",
+      "sourceType": "com.example.util.JwtUtils"
+    }
+  ],
+  "properties": [
+    {
+      "name": "account.jwt.expire",
+      "type": "java.lang.Long",
+      "sourceType": "com.example.util.JwtUtils",
+      "defaultValue": 0
+    },
+    {
+      "name": "account.jwt.header",
+      "type": "java.lang.String",
+      "sourceType": "com.example.util.JwtUtils"
+    },
+    {
+      "name": "account.jwt.secret",
+      "type": "java.lang.String",
+      "sourceType": "com.example.util.JwtUtils"
+    }
+  ],
+  "hints": []
+}

@@ -4,7 +4,10 @@ import com.example.entity.Result;
 import com.example.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.mapper.UserMapper;
+import com.example.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,6 +24,8 @@ public class UserService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private RedisUtil redisUtil;
 
     /**
      * 注册
@@ -60,7 +65,10 @@ public class UserService {
             Long userId = userMapper.login(user);
             if(userId==null){
                 result.setMsg("用户名或密码错误");
+            }else if (redisUtil.sHasKey("username",user.getUsername()) == true){
+                result.setMsg("失败！用户已在线");
             }else {
+                redisUtil.set("username",user.getUsername());
                 result.setMsg("登录成功");
                 result.setSuccess(true);
                 user.setId(userId);
