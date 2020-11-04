@@ -2,17 +2,11 @@ package com.example;
 
 import com.example.entity.User;
 import com.example.util.RedisUtil;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.Transaction;
 
 @SpringBootTest
 class FinalprojectSpringbootApplicationTests {
