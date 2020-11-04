@@ -4,11 +4,15 @@ import com.example.entity.Result;
 import com.example.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.mapper.UserMapper;
+import com.example.util.JWTUtils;
 import com.example.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <p>
@@ -61,19 +65,25 @@ public class UserService {
         Result result=new Result();
         result.setSuccess(false);
         result.setDetail(null);
+
         try {
             Long userId = userMapper.login(user);
+            //指定一个map记录数据传入jwt,生产token
+            Map<String,String> payload = new HashMap<>();
+            payload.put("id", String.valueOf(userId));
+            payload.put("username",user.getUsername());
+            String token = JWTUtils.getToken(payload);
+
             if(userId==null){
                 result.setMsg("用户名或密码错误");
-            }else if (redisUtil.sHasKey("username",user.getUsername()) == true){
-                result.setMsg("失败！用户已在线");
-            }else {
-                redisUtil.set("username",user.getUsername());
+            } else {
+                redisUtil.hset("token", String.valueOf(userId),token);
+
                 result.setMsg("登录成功");
                 result.setSuccess(true);
-                user.setId(userId);
-                User userById = userMapper.findUserById(userId);
-                result.setDetail(userById);
+
+                result.setDetail(user.getUsername());
+                result.setToken(token);
             }
 
         }catch (Exception e){

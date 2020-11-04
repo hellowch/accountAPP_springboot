@@ -4,6 +4,7 @@ public class Result<T> {
     private String msg;
     private boolean success;
     private T detail;
+    private String token;
 
     public String getMsg() {
         return msg;
@@ -27,5 +28,13 @@ public class Result<T> {
 
     public void setDetail(T detail) {
         this.detail = detail;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

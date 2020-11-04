@@ -1,14 +1,17 @@
 package com.example.controller;
 
 
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.example.entity.User;
 import com.example.service.UserService;
+import com.example.util.JWTUtils;
 import com.example.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 import com.example.entity.Result;
+
+import javax.servlet.http.HttpServletRequest;
+
 
 /**
  * <p>
@@ -52,11 +55,15 @@ public class UserController {
      * 退出
      * @return
      */
-    @GetMapping("/logout")
-    public String logout() {
-        redisUtil.del("username");
+    @PostMapping("/logout")
+    public String logout(HttpServletRequest request) {
+
+        String token = request.getHeader("token"); //从头部信息中获取token
+        DecodedJWT verify = JWTUtils.verify(token);
+        String id = String.valueOf(verify.getClaim("id").asString());  //从token中获取id信息
+        System.out.println(id);
+        redisUtil.hdel("token",id);  //通过id在redis的哈希表中删除对应token
         return "退出成功";
     }
-
 
 }

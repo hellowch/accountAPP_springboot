@@ -1,5 +1,10 @@
 package com.example;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
+import com.auth0.jwt.interfaces.Verification;
 import com.example.entity.User;
 import com.example.util.RedisUtil;
 import org.junit.jupiter.api.Test;
@@ -7,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
+
+import java.util.Calendar;
+import java.util.HashMap;
 
 @SpringBootTest
 class FinalprojectSpringbootApplicationTests {
@@ -38,5 +46,42 @@ class FinalprojectSpringbootApplicationTests {
         }
     }
 
+
+    //jwt令牌的获取
+    @Test
+    public void jwt01(){
+        HashMap<String,Object> map = new HashMap<>();
+
+        Calendar instance = Calendar.getInstance(); //用Calendar类设置过期时间
+        instance.add(Calendar.SECOND,600);  //60秒后
+
+        String token = JWT.create()
+                .withHeader(map)   //头部
+                .withClaim("userId",21)    //传递信息
+                .withClaim("username","wch")
+                .withExpiresAt(instance.getTime())     //令牌过期时间
+                .sign(Algorithm.HMAC256("woc666"));    //签名
+
+        System.out.println(token);
+    }
+
+    //jwt令牌的验证
+    @Test
+    public void jwt02() {
+
+        //创建验证对象
+        JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256("woc666")).build(); //赋予加密的算法和签名
+        //验证传来的token
+        DecodedJWT verify = jwtVerifier.verify("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDQ0NjE0OTgsInVzZXJJZCI6MjEsInVzZXJuYW1lIjoid2NoIn0.4CCrIN6SR1VvhLqj56VaJXyvzrFRrX8TBbMc5ElIZUA");
+        System.out.println(verify.getClaim("userId").asLong());
+        System.out.println(verify.getClaim("username").asString());
+
+    }
+
+    @Test
+    public void wch222() {
+        System.out.println(redisUtil.sGet("token"));
+
+    }
 
 }
