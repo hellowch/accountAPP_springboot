@@ -68,6 +68,13 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <scope>test</scope>
+        </dependency>
+
         <!--mp代码生成器-->
         <dependency>
             <groupId>com.baomidou</groupId>

@@ -3,7 +3,7 @@
 <mapper namespace="com.example.mapper.InaccountMapper">
 
     <select id="getInaccountLike" resultType="com.example.entity.Inaccount">
-        SELECT * FROM tb_inaccount WHERE 1=1
+        SELECT * FROM tb_inaccount WHERE user_id = #{user_id}
         <if test="time != null">and time like "%"#{time}"%"</if>
         <if test="type != null">and type like "%"#{type}"%"</if>
         <if test="handler != null">and handler like "%"#{handler}"%"</if>
@@ -11,7 +11,7 @@
     </select>
 
     <select id="inaccountAll" resultType="com.example.entity.Inaccount">
-        SELECT * FROM tb_inaccount;
+        SELECT * FROM tb_inaccount where user_id = #{user_id};
     </select>
 
     <delete id="inaccountDelete" parameterType="java.lang.Integer">
@@ -25,4 +25,8 @@
     <update id="inaccountUpdate" parameterType="com.example.entity.Outaccount">
         UPDATE tb_inaccount set money=#{money},time=#{time},type=#{type},handler=#{handler},mark=#{mark}  where id=#{id}
     </update>
+
+    <select id="idSelectUser" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT user_id from tb_inaccount where id = #{id}
+    </select>
 </mapper>

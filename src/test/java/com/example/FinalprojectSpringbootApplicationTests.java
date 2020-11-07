@@ -4,7 +4,6 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.auth0.jwt.interfaces.Verification;
 import com.example.entity.User;
 import com.example.util.RedisUtil;
 import org.junit.jupiter.api.Test;
@@ -80,7 +79,8 @@ class FinalprojectSpringbootApplicationTests {
 
     @Test
     public void wch222() {
-        System.out.println(redisUtil.sGet("token"));
+        redisUtil.set("name","wch");
+        System.out.println(redisUtil.get("name"));
 
     }
 

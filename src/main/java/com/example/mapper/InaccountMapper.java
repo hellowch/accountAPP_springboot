@@ -31,7 +31,7 @@ public interface InaccountMapper {
     /**
      * 查询全部记录
      */
-    List<Inaccount> inaccountAll();
+    List<Inaccount> inaccountAll(Integer user_id);
 
     /**
      * 删除记录
@@ -47,4 +47,9 @@ public interface InaccountMapper {
      * 修改记录
      */
     void inaccountUpdate(Inaccount inaccount);
+
+    /**
+     * 根据id查询user_id
+     */
+    Integer idSelectUser(Integer id);
 }
