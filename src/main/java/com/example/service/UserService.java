@@ -84,8 +84,8 @@ public class UserService {
 
                 result.setMsg("登录成功");
                 result.setSuccess(true);
-
                 result.setDetail(user.getUsername());
+                result.setAvatar(userMapper.avatar(user));
                 result.setToken(token);
             }
 

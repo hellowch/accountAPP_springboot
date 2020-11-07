@@ -35,7 +35,7 @@ public interface UserMapper {
      * 注册
      * @param user
      */
-    @Insert("insert into tb_user values(#{id},#{username},#{password})")
+    @Insert("insert into tb_user values(#{id},#{username},#{password},#{avatar})")
     @Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")
     void register(User user);
 
@@ -47,4 +47,12 @@ public interface UserMapper {
      */
     @Select("select u.id from tb_user u where u.username=#{username} and password=#{password}")
     Long login(User user);
+
+    /**
+     * 根据账号密码查询头像
+     * @param user
+     * @return
+     */
+    @Select("select u.avatar from tb_user u where u.username=#{username} and password=#{password}")
+    String avatar(User user);
 }

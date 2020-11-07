@@ -4,6 +4,7 @@ public class Result<T> {
     private String msg;
     private boolean success;
     private T detail;
+    private String Avatar;
     private String token;
 
     public String getMsg() {
@@ -36,5 +37,13 @@ public class Result<T> {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getAvatar() {
+        return Avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        Avatar = avatar;
     }
 }

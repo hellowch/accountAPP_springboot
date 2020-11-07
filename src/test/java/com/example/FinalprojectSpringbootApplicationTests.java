@@ -28,7 +28,7 @@ class FinalprojectSpringbootApplicationTests {
     //        springboot集成redis测试
     @Test
     public void redisTemplate() {
-        User user = new User((long) 2,"wch","123456");
+        User user = new User((long) 2,"wch","123456","11");
         redisTemplate.opsForValue().set("user2",user);
         System.out.println(redisTemplate.opsForValue().get("user2"));
     }
@@ -79,8 +79,10 @@ class FinalprojectSpringbootApplicationTests {
 
     @Test
     public void wch222() {
-        redisUtil.set("name","wch");
-        System.out.println(redisUtil.get("name"));
+//        redisUtil.set("name","wch");
+////        System.out.println(redisUtil.get("name"));
+        redisUtil.hdel("token",String.valueOf(1));
+        System.out.println(redisUtil.hget("token",String.valueOf(1)));
 
     }
 
