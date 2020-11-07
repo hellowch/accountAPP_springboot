@@ -28,9 +28,6 @@ public class InaccountService {
     @Autowired
     InaccountMapper inaccountMapper;
 
-    @Autowired
-    private RedisUtil redisUtil;
-
     /**
      *模糊查询
      */

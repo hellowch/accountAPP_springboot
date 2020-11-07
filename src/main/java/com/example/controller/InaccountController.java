@@ -38,9 +38,6 @@ public class InaccountController {
     @Autowired
     InaccountService inaccountService;
 
-    @Autowired
-    private RedisUtil redisUtil;
-
     static Logger logger = Logger.getLogger(String.valueOf(InaccountController.class));
 
     /**
@@ -81,7 +78,6 @@ public class InaccountController {
     public String inaccountNew(Inaccount inaccount,HttpServletRequest request){
         String token = request.getHeader("token");
         inaccount.setUser_id(JWTUtils.user_id(token));
-        System.out.println(inaccount);
         return inaccountService.inaccountNew(inaccount);
     }
 

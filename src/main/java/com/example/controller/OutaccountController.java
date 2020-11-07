@@ -1,17 +1,17 @@
 package com.example.controller;
 
 
-import com.example.entity.Inaccount;
 import com.example.entity.Outaccount;
 import com.example.entity.Result;
-import com.example.service.InaccountService;
 import com.example.service.OutaccountService;
+import com.example.util.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -35,7 +35,10 @@ public class OutaccountController {
      * 模糊查询
      */
     @PostMapping("/getOutaccountLike")
-    public Result getOutaccountLike(Outaccount outaccount){
+    public Result getOutaccountLike(Outaccount outaccount, HttpServletRequest request){
+        System.out.println(outaccount);
+        String token = request.getHeader("token"); //从头部信息中获取token
+        outaccount.setUser_id(JWTUtils.user_id(token));
         return outaccountService.getOutaccountLike(outaccount);
     }
 
@@ -43,8 +46,10 @@ public class OutaccountController {
      * 记录列表
      */
     @PostMapping("/outaccountAll")
-    public List<Inaccount> outaccountAll(){
-        List<Inaccount> list = outaccountService.outaccountAll();
+    public List<Outaccount> outaccountAll(HttpServletRequest request){
+
+        String token = request.getHeader("token"); //从头部信息中获取token
+        List<Outaccount> list = outaccountService.outaccountAll(JWTUtils.user_id(token));
         return list;
     }
 
@@ -52,25 +57,29 @@ public class OutaccountController {
      * 删除记录
      */
     @RequestMapping("/outaccountDelete")
-    public void outaccountDelete(Integer id){
-        outaccountService.outaccountDelete(id);
+    public String outaccountDelete(Integer id,HttpServletRequest request){
+        String token = request.getHeader("token"); //从头部信息中获取token
+        return outaccountService.outaccountDelete(id,JWTUtils.user_id(token));
     }
 
     /**
      * 添加记录
      */
     @RequestMapping("/outaccountNew")
-    public void outaccountNew(Outaccount outaccount){
-        outaccountService.outaccountNew(outaccount);
+    public String outaccountNew(Outaccount outaccount,HttpServletRequest request){
+        String token = request.getHeader("token");
+        outaccount.setUser_id(JWTUtils.user_id(token));
+        return outaccountService.outaccountNew(outaccount);
     }
 
     /**
      * 修改记录
      */
     @RequestMapping("/outaccountUpdate")
-    public void outaccountUpdate(Outaccount outaccount){
+    public String outaccountUpdate(Outaccount outaccount,HttpServletRequest request){
         System.out.println(outaccount);
-        outaccountService.outaccountUpdate(outaccount);
+        String token = request.getHeader("token");
+        return outaccountService.outaccountUpdate(outaccount,JWTUtils.user_id(token));
     }
 
 }

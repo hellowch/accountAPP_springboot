@@ -47,28 +47,41 @@ public class OutaccountService {
     /**
      * 查询全部记录
      */
-    public List<Inaccount> outaccountAll(){
-        return outaccountMapper.outaccountAll();
+    public List<Outaccount> outaccountAll(Integer user_id){
+        return outaccountMapper.outaccountAll(user_id);
     }
 
     /**
      * 删除记录
      */
-    public void outaccountDelete(Integer id){
-        outaccountMapper.outaccountDelete(id);
+    public String outaccountDelete(Integer id,Integer user_id){
+
+        if (outaccountMapper.idSelectUser(id) == user_id){
+            outaccountMapper.outaccountDelete(id);
+            return "删除成功";
+        }else {
+            return "这是别人的账单哦！";
+        }
     }
 
     /**
      * 添加记录
      */
-    public void outaccountNew(Outaccount outaccount){
+    public String outaccountNew(Outaccount outaccount){
         outaccountMapper.outaccountNew(outaccount);
+        return "添加成功！";
     }
 
     /**
      * 修改记录
      */
-    public void outaccountUpdate(Outaccount outaccount){
-        outaccountMapper.outaccountUpdate(outaccount);
+    public String outaccountUpdate(Outaccount outaccount,Integer user_id){
+
+        if (outaccountMapper.idSelectUser(outaccount.getId()) == user_id){
+            outaccountMapper.outaccountUpdate(outaccount);
+            return "修改成功！";
+        }else {
+            return "这是别人的消费记录哦！";
+        }
     }
 }

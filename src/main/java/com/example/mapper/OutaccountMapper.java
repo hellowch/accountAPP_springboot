@@ -29,7 +29,7 @@ public interface OutaccountMapper {
     /**
      * 查询全部记录
      */
-    List<Inaccount> outaccountAll();
+    List<Outaccount> outaccountAll(Integer user_id);
 
     /**
      * 删除记录
@@ -46,4 +46,8 @@ public interface OutaccountMapper {
      */
     void outaccountUpdate(Outaccount outaccount);
 
+    /**
+     * 根据id查询user_id
+     */
+    Integer idSelectUser(Integer id);
 }
