@@ -80,7 +80,9 @@ class FinalprojectSpringbootApplicationTests {
 
     @Test
     public void wch222() {
-        System.out.println(redisUtil.sGet("token"));
+
+        redisUtil.set("hello","1111111");
+        System.out.println(redisUtil.get("hello"));
 
     }
 
