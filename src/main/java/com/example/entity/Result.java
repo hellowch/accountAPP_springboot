@@ -37,4 +37,5 @@ public class Result<T> {
     public void setToken(String token) {
         this.token = token;
     }
+
 }

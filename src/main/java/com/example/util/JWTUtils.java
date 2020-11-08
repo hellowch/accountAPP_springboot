@@ -43,6 +43,16 @@ public class JWTUtils {
         return decodedJWT;
     }
 
+    /**
+     * 查询token中的user_id
+     * @return
+     */
+    public static Integer user_id(String token) {
+        DecodedJWT verify = JWTUtils.verify(token);
+        Integer user_id = Integer.valueOf(verify.getClaim("id").asString());  //从token中获取id信息
+        return user_id;
+    }
+
 //    /**
 //     * 获取token中的 payload
 //     */

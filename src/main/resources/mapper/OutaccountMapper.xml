@@ -3,7 +3,7 @@
 <mapper namespace="com.example.mapper.OutaccountMapper">
 
     <select id="getOutaccountLike" resultType="com.example.entity.Outaccount">
-        SELECT * FROM tb_outaccount
+        SELECT * FROM tb_outaccount where user_id = #{user_id}
         <if test="time != null">and time like "%"#{time}"%"</if>
         <if test="type != null">and type like "%"#{type}"%"</if>
         <if test="address != null">and address like "%"#{address}"%"</if>
@@ -11,7 +11,7 @@
     </select>
 
     <select id="outaccountAll" resultType="com.example.entity.Outaccount">
-        SELECT * FROM tb_outaccount;
+        SELECT * FROM tb_outaccount where user_id = #{user_id};
     </select>
 
     <delete id="outaccountDelete" parameterType="java.lang.Integer">
@@ -25,4 +25,8 @@
     <update id="outaccountUpdate" parameterType="com.example.entity.Outaccount">
         UPDATE tb_outaccount set money=#{money},time=#{time},type=#{type},address=#{address},mark=#{mark}  where id=#{id}
     </update>
+
+    <select id="idSelectUser" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT user_id from tb_outaccount where id = #{id}
+    </select>
 </mapper>

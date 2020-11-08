@@ -23,15 +23,17 @@ public class User implements Serializable {
     private Long id;
     private String username;
     private String password;
+    private String avatar;
 
     public User(){
 
     }
 
-    public User(Long id, String username, String password) {
+    public User(Long id, String username, String password, String avatar) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.avatar = avatar;
     }
 
     public Long getId() {
@@ -58,12 +60,21 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", avatar='" + avatar + '\'' +
                 '}';
     }
 }
