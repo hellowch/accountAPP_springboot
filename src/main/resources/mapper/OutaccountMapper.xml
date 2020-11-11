@@ -7,11 +7,11 @@
         <if test="time != null">and time like "%"#{time}"%"</if>
         <if test="type != null">and type like "%"#{type}"%"</if>
         <if test="address != null">and address like "%"#{address}"%"</if>
-        <if test="mark != null">and mark like "%"#{mark}"%"</if>;
+        <if test="mark != null">and mark like "%"#{mark}"%"</if> order by id desc;
     </select>
 
     <select id="outaccountAll" resultType="com.example.entity.Outaccount">
-        SELECT * FROM tb_outaccount where user_id = #{user_id};
+        SELECT * FROM tb_outaccount where user_id = #{user_id} order by id desc;
     </select>
 
     <delete id="outaccountDelete" parameterType="java.lang.Integer">
