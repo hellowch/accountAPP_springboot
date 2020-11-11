@@ -77,9 +77,11 @@ public class UserService {
 
             if(userId==null){
                 result.setMsg("用户名或密码错误");
-            } else if (redisUtil.hHasKey("token",String.valueOf(userId))){
-                result.setMsg("用户已登录");
-            } else {
+            }
+//            else if (redisUtil.hHasKey("token",String.valueOf(userId))){
+//                result.setMsg("用户已登录");
+//            }
+            else {
                 redisUtil.hset("token", String.valueOf(userId),token,604800);
                 result.setMsg("登录成功");
                 result.setSuccess(true);

@@ -57,32 +57,62 @@ public class InaccountService {
     /**
      * 删除记录
      */
-    public String inaccountDelete(Integer id,Integer user_id){
-        if (inaccountMapper.idSelectUser(id) == user_id){
-            inaccountMapper.inaccountDelete(id);
-            return "删除成功";
-        }else {
-            return "这是别人的账单哦！";
+    public Result inaccountDelete(Integer id,Integer user_id){
+        Result result = new Result();
+        result.setSuccess(false);
+        result.setDetail(null);
+        try {
+            if (inaccountMapper.idSelectUser(id) == user_id){
+                inaccountMapper.inaccountDelete(id);
+                result.setMsg("删除成功");
+                result.setSuccess(true);
+            }else {
+                result.setMsg("删除失败");
+            }
+        }catch (Exception e){
+            result.setMsg(e.getMessage());
+            e.printStackTrace();
         }
+        return result;
     }
 
     /**
      * 添加记录
      */
-    public String inaccountNew(Inaccount inaccount){
-        inaccountMapper.inaccountNew(inaccount);
-        return "添加成功！";
+    public Result inaccountNew(Inaccount inaccount){
+        Result result = new Result();
+        result.setSuccess(false);
+        result.setDetail(null);
+        try {
+            inaccountMapper.inaccountNew(inaccount);
+            result.setMsg("添加成功");
+            result.setSuccess(true);
+        }catch (Exception e){
+            result.setMsg(e.getMessage());
+            e.printStackTrace();
+        }
+        return result;
     }
 
     /**
      * 修改记录
      */
-    public String inaccountUpdate(Inaccount inaccount,Integer user_id){
-        if (inaccountMapper.idSelectUser(inaccount.getId()) == user_id){
-            inaccountMapper.inaccountUpdate(inaccount);
-            return "修改成功！";
-        }else {
-            return "这是别人的消费记录哦！";
+    public Result inaccountUpdate(Inaccount inaccount,Integer user_id){
+        Result result = new Result();
+        result.setSuccess(false);
+        result.setDetail(null);
+        try {
+            if (inaccountMapper.idSelectUser(inaccount.getId()) == user_id){
+                inaccountMapper.inaccountUpdate(inaccount);
+                result.setMsg("修改成功");
+                result.setSuccess(true);
+            }else {
+                result.setMsg("修改失败");
+            }
+        }catch (Exception e){
+            result.setMsg(e.getMessage());
+            e.printStackTrace();
         }
+        return result;
     }
 }

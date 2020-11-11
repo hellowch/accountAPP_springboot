@@ -48,7 +48,7 @@ public class Inaccount implements Serializable {
     private String mark;
 
     /**
-     * 备注
+     * 用户id
      */
     private Integer user_id;
 

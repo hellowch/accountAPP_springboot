@@ -57,7 +57,7 @@ public class OutaccountController {
      * 删除记录
      */
     @RequestMapping("/outaccountDelete")
-    public String outaccountDelete(Integer id,HttpServletRequest request){
+    public Result outaccountDelete(Integer id,HttpServletRequest request){
         String token = request.getHeader("token"); //从头部信息中获取token
         return outaccountService.outaccountDelete(id,JWTUtils.user_id(token));
     }
@@ -66,7 +66,7 @@ public class OutaccountController {
      * 添加记录
      */
     @RequestMapping("/outaccountNew")
-    public String outaccountNew(Outaccount outaccount,HttpServletRequest request){
+    public Result outaccountNew(Outaccount outaccount,HttpServletRequest request){
         String token = request.getHeader("token");
         outaccount.setUser_id(JWTUtils.user_id(token));
         return outaccountService.outaccountNew(outaccount);
@@ -76,7 +76,7 @@ public class OutaccountController {
      * 修改记录
      */
     @RequestMapping("/outaccountUpdate")
-    public String outaccountUpdate(Outaccount outaccount,HttpServletRequest request){
+    public Result outaccountUpdate(Outaccount outaccount,HttpServletRequest request){
         System.out.println(outaccount);
         String token = request.getHeader("token");
         return outaccountService.outaccountUpdate(outaccount,JWTUtils.user_id(token));

@@ -36,8 +36,9 @@ public class UserController {
      * @param user
      * @return
      */
-    @PostMapping("/register")
+    @RequestMapping("/register")
     public Result register(@RequestBody User user){
+        System.out.println(user);
         return userService.rgister(user);
     }
 
@@ -46,7 +47,7 @@ public class UserController {
      * @param user
      * @return
      */
-    @PostMapping("/login")
+    @RequestMapping("/login")
     public Result login(@RequestBody User user){
         return userService.login(user);
     }
@@ -55,7 +56,7 @@ public class UserController {
      * 退出
      * @return
      */
-    @PostMapping("/logout")
+    @RequestMapping("/logout")
     public String logout(HttpServletRequest request) {
 
         String token = request.getHeader("token"); //从头部信息中获取token

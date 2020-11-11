@@ -54,34 +54,65 @@ public class OutaccountService {
     /**
      * 删除记录
      */
-    public String outaccountDelete(Integer id,Integer user_id){
+    public Result outaccountDelete(Integer id,Integer user_id){
 
-        if (outaccountMapper.idSelectUser(id) == user_id){
-            outaccountMapper.outaccountDelete(id);
-            return "删除成功";
-        }else {
-            return "这是别人的账单哦！";
+        Result result = new Result();
+        result.setSuccess(false);
+        result.setDetail(null);
+        try {
+            if (outaccountMapper.idSelectUser(id) == user_id){
+                outaccountMapper.outaccountDelete(id);
+                result.setMsg("删除成功");
+                result.setSuccess(true);
+            }else {
+                result.setMsg("删除失败");
+            }
+        }catch (Exception e){
+            result.setMsg(e.getMessage());
+            e.printStackTrace();
         }
+        return result;
     }
 
     /**
      * 添加记录
      */
-    public String outaccountNew(Outaccount outaccount){
-        outaccountMapper.outaccountNew(outaccount);
-        return "添加成功！";
+    public Result outaccountNew(Outaccount outaccount){
+
+        Result result = new Result();
+        result.setSuccess(false);
+        result.setDetail(null);
+        try {
+            outaccountMapper.outaccountNew(outaccount);
+            result.setMsg("添加成功");
+            result.setSuccess(true);
+        }catch (Exception e){
+            result.setMsg(e.getMessage());
+            e.printStackTrace();
+        }
+
+        return result;
     }
 
     /**
      * 修改记录
      */
-    public String outaccountUpdate(Outaccount outaccount,Integer user_id){
-
-        if (outaccountMapper.idSelectUser(outaccount.getId()) == user_id){
-            outaccountMapper.outaccountUpdate(outaccount);
-            return "修改成功！";
-        }else {
-            return "这是别人的消费记录哦！";
+    public Result outaccountUpdate(Outaccount outaccount,Integer user_id){
+        Result result = new Result();
+        result.setSuccess(false);
+        result.setDetail(null);
+        try {
+            if (outaccountMapper.idSelectUser(outaccount.getId()) == user_id){
+                outaccountMapper.outaccountUpdate(outaccount);
+                result.setMsg("修改成功");
+                result.setSuccess(true);
+            }else {
+                result.setMsg("修改失败");
+            }
+        }catch (Exception e){
+            result.setMsg(e.getMessage());
+            e.printStackTrace();
         }
+        return result;
     }
 }

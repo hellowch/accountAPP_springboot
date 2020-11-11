@@ -65,7 +65,7 @@ public class InaccountController {
      * 删除记录
      */
     @RequestMapping("/inaccountDelete")
-    public String inaccountDelete(Integer id,HttpServletRequest request){
+    public Result inaccountDelete(Integer id,HttpServletRequest request){
         String token = request.getHeader("token"); //从头部信息中获取token
         return inaccountService.inaccountDelete(id,JWTUtils.user_id(token));
     }
@@ -75,7 +75,7 @@ public class InaccountController {
      * 添加记录
      */
     @RequestMapping("/inaccountNew")
-    public String inaccountNew(Inaccount inaccount,HttpServletRequest request){
+    public Result inaccountNew(Inaccount inaccount,HttpServletRequest request){
         String token = request.getHeader("token");
         inaccount.setUser_id(JWTUtils.user_id(token));
         return inaccountService.inaccountNew(inaccount);
@@ -85,7 +85,7 @@ public class InaccountController {
      * 修改记录
      */
     @RequestMapping("/inaccountUpdate")
-    public String inaccountUpdate(Inaccount inaccount,HttpServletRequest request){
+    public Result inaccountUpdate(Inaccount inaccount,HttpServletRequest request){
         System.out.println(inaccount);
         String token = request.getHeader("token");
         return inaccountService.inaccountUpdate(inaccount,JWTUtils.user_id(token));
