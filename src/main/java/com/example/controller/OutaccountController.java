@@ -82,4 +82,12 @@ public class OutaccountController {
         return outaccountService.outaccountUpdate(outaccount,JWTUtils.user_id(token));
     }
 
+    /**
+     * 根据type统计不同类型的总金额
+     */
+    @RequestMapping("/outaccountCount")
+    public Result outaccountCount(HttpServletRequest request){
+        String token = request.getHeader("token");
+        return outaccountService.outaccountCount(JWTUtils.user_id(token));
+    }
 }

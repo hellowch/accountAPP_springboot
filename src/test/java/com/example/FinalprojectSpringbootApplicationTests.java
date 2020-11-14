@@ -64,26 +64,26 @@ class FinalprojectSpringbootApplicationTests {
         System.out.println(token);
     }
 
-    //jwt令牌的验证
-    @Test
-    public void jwt02() {
-
-        //创建验证对象
-        JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256("woc666")).build(); //赋予加密的算法和签名
-        //验证传来的token
-        DecodedJWT verify = jwtVerifier.verify("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDQ0NjE0OTgsInVzZXJJZCI6MjEsInVzZXJuYW1lIjoid2NoIn0.4CCrIN6SR1VvhLqj56VaJXyvzrFRrX8TBbMc5ElIZUA");
-        System.out.println(verify.getClaim("userId").asLong());
-        System.out.println(verify.getClaim("username").asString());
-
-    }
-
-    @Test
-    public void wch222() {
-//        redisUtil.set("name","wch");
-////        System.out.println(redisUtil.get("name"));
-        redisUtil.hdel("token",String.valueOf(1));
-        System.out.println(redisUtil.hget("token",String.valueOf(1)));
-
-    }
+//    //jwt令牌的验证
+//    @Test
+//    public void jwt02() {
+//
+//        //创建验证对象
+//        JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256("woc666")).build(); //赋予加密的算法和签名
+//        //验证传来的token
+//        DecodedJWT verify = jwtVerifier.verify("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDQ0NjE0OTgsInVzZXJJZCI6MjEsInVzZXJuYW1lIjoid2NoIn0.4CCrIN6SR1VvhLqj56VaJXyvzrFRrX8TBbMc5ElIZUA");
+//        System.out.println(verify.getClaim("userId").asLong());
+//        System.out.println(verify.getClaim("username").asString());
+//
+//    }
+//
+//    @Test
+//    public void wch222() {
+////        redisUtil.set("name","wch");
+//////        System.out.println(redisUtil.get("name"));
+//        redisUtil.hdel("token",String.valueOf(1));
+//        System.out.println(redisUtil.hget("token",String.valueOf(1)));
+//
+//    }
 
 }

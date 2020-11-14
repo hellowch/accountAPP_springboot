@@ -115,4 +115,22 @@ public class OutaccountService {
         }
         return result;
     }
+
+    /**
+     * 根据type统计不同类型的总金额
+     */
+    public Result outaccountCount(Integer user_id){
+        Result result = new Result();
+        result.setSuccess(false);
+        result.setDetail(null);
+        try {
+            result.setDetail(outaccountMapper.outaccountCount(user_id));
+            result.setMsg("查询成功");
+            result.setSuccess(true);
+        }catch (Exception e){
+            result.setMsg(e.getMessage());
+            e.printStackTrace();
+        }
+        return result;
+    }
 }

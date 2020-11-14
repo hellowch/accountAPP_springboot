@@ -90,4 +90,13 @@ public class InaccountController {
         String token = request.getHeader("token");
         return inaccountService.inaccountUpdate(inaccount,JWTUtils.user_id(token));
     }
+
+    /**
+     * 根据type统计不同类型的总金额
+     */
+    @RequestMapping("/inaccountCount")
+    public Result inaccountCount(HttpServletRequest request){
+        String token = request.getHeader("token");
+        return inaccountService.inaccountCount(JWTUtils.user_id(token));
+    }
 }

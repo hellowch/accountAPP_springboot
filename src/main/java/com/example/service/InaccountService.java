@@ -115,4 +115,22 @@ public class InaccountService {
         }
         return result;
     }
+
+    /**
+     * 根据type统计不同类型的总金额
+     */
+    public Result inaccountCount(Integer user_id){
+        Result result = new Result();
+        result.setSuccess(false);
+        result.setDetail(null);
+        try {
+            result.setDetail(inaccountMapper.inaccountCount(user_id));
+            result.setMsg("查询成功");
+            result.setSuccess(true);
+        }catch (Exception e){
+            result.setMsg(e.getMessage());
+            e.printStackTrace();
+        }
+        return result;
+    }
 }

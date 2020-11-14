@@ -52,4 +52,9 @@ public interface InaccountMapper {
      * 根据id查询user_id
      */
     Integer idSelectUser(Integer id);
+
+    /**
+     * 根据type统计不同类型的总金额
+     */
+    List inaccountCount(Integer user_id);
 }

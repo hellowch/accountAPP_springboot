@@ -29,4 +29,8 @@
     <select id="idSelectUser" parameterType="java.lang.Integer" resultType="java.lang.Integer">
         SELECT user_id from tb_outaccount where id = #{id}
     </select>
+
+    <select id="outaccountCount" parameterType="java.lang.Integer" resultType="Map">
+        SELECT type,sum(money) as nums from tb_outaccount where user_id = #{user_id} group by type;
+    </select>
 </mapper>

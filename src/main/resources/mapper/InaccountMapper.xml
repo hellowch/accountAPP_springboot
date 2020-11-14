@@ -23,11 +23,15 @@
         INSERT INTO tb_inaccount (money,time,type,handler,mark,user_id) values (#{money},#{time},#{type},#{handler},#{mark},#{user_id});
     </insert>
 
-    <update id="inaccountUpdate" parameterType="com.example.entity.Outaccount">
+    <update id="inaccountUpdate" parameterType="com.example.entity.Inaccount">
         UPDATE tb_inaccount set money=#{money},time=#{time},type=#{type},handler=#{handler},mark=#{mark}  where id=#{id}
     </update>
 
     <select id="idSelectUser" parameterType="java.lang.Integer" resultType="java.lang.Integer">
         SELECT user_id from tb_inaccount where id = #{id}
+    </select>
+
+    <select id="inaccountCount" parameterType="java.lang.Integer" resultType="Map">
+        SELECT type,sum(money) as nums from tb_inaccount where user_id = #{user_id} group by type;
     </select>
 </mapper>
