@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.MemoMapper">
+
+
+    <select id="memoAll" resultType="com.example.entity.Memo">
+        SELECT * FROM tb_memo where user_id = #{user_id} order by id desc;
+    </select>
+
+    <insert id="memoNew" parameterType="com.example.entity.Memo">
+        INSERT INTO tb_memo (memo,user_id) values (#{memo},#{user_id});
+    </insert>
+
+    <delete id="memoDelete" parameterType="java.lang.Integer">
+        DELETE FROM tb_memo where id = #{id}
+    </delete>
+
+    <update id="memoUpdate" parameterType="com.example.entity.Inaccount">
+        UPDATE tb_memo set memo=#{memo} where id=#{id}
+    </update>
+
+    <select id="idSelectUser" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT user_id from tb_memo where id = #{id}
+    </select>
+
+</mapper>
