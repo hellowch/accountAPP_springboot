@@ -15,12 +15,9 @@
         DELETE FROM tb_memo where id = #{id}
     </delete>
 
-    <update id="memoUpdate" parameterType="com.example.entity.Inaccount">
+    <update id="memoUpdate" parameterType="com.example.entity.Memo">
         UPDATE tb_memo set memo=#{memo} where id=#{id}
     </update>
 
-    <select id="idSelectUser" parameterType="java.lang.Integer" resultType="java.lang.Integer">
-        SELECT user_id from tb_memo where id = #{id}
-    </select>
 
 </mapper>

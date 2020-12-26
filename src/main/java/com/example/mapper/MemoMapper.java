@@ -33,10 +33,12 @@ public interface MemoMapper extends BaseMapper<Memo> {
     /**
      *修改列表
      */
+    void memoUpdate(Memo memo);
 
 
     /**
      *删除列表
      */
+    void memoDelete(Integer id);
 
 }
